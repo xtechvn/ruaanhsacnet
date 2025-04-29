@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Photo</title>
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/lightgallery-bundle.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+    <!-- Header Start -->
+
+
+    <!-- Phần trên - nền đen -->
+    <div class="bg-gray-800 text-white text-sm relative z-20">
+
+        <div class="max-w-7xl mx-auto flex justify-end items-center py-1 px-4 space-x-4">
+
+            <a href="#" class="hover:underline">Đăng nhập</a>
+            <a href="#" class="hover:underline">Đăng ký</a>
+
+            <!-- Thông báo -->
+            <div class="relative group">
+                <button class="relative flex items-center focus:outline-none">
+                    <svg class="w-5 h-5 mr-1 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.147.735-.405 1.005L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                    Thông báo
+                    <span
+                        class="absolute -top-2 left-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </button>
+
+                <!-- Dropdown Thông báo -->
+                <div
+                    class="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-20">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 text-sm">Thông báo mới</h3>
+                        <ul class="space-y-2 text-gray-600 text-xs">
+                            <li class="hover:bg-gray-100 p-2 rounded">Tặng bạn voucher trị giá 20%</li>
+                            <li class="hover:bg-gray-100 p-2 rounded">Chúc mừng bạn đã đăng ký tài khoản</li>
+                            <li class="hover:bg-gray-100 p-2 rounded">Mừng sinh nhật tặng voucher BIRTHDAY</li>
+                        </ul>
+                        <div class="mt-2 text-center">
+                            <a href="#" class="text-blue-500 hover:underline text-xs">Xem tất cả</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avatar Xu -->
+            <div class="flex items-center space-x-1">
+                <div class="size-10 rounded-full bg-white text-center p-1">
+                    <img src="images/icon/coin.png" class="size-3 mx-auto" alt="" />
+                    <span class="text-xs text-black">135</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navbar Component -->
+    <nav class="bg-white shadow sticky">
+        <div class="max-w-7xl mx-auto flex justify-between items-center h-16 px-4">
+
+
+            <!-- Logo -->
+            <div class="flex items-center">
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 focus:outline-none mr-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                <a href="#"><img src="images/logo.png" alt="Logo" class="h-10 w-auto mr-2"></a>
+            </div>
+
+            <!-- Menu items -->
+            <div id="menu-items"
+                class="hidden absolute top-16 left-0 w-full bg-white flex-col space-y-4 px-6 py-4 md:static md:flex md:flex-row md:space-x-8 md:space-y-0 md:items-center md:w-auto md:bg-transparent">
+                <a href="#" class="text-gray-700 text-red-400  font-semibold hover:text-red-400 transition">Trang
+                    chủ</a>
+                <a href="#" class="text-gray-700 font-semibold hover:text-red-400 transition">Dịch vụ</a>
+                <a href="#" class="text-gray-700 font-semibold hover:text-red-400 flex items-center transition">
+                    <img src="images/icon/coin.png" class="w-4 h-4 mr-1" alt="Coin Icon" /> Nạp xu
+                </a>
+                <a href="#" class="text-gray-700 font-semibold hover:text-red-400 transition">Quà tặng</a>
+                <a href="#" class="text-gray-700 font-semibold hover:text-red-400 transition">Liên hệ</a>
+            </div>
+
+
+            <div class="flex items-center space-x-4">
+                <!-- Icon Help -->
+                <a href="" class="hidden md:block">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M7.99998 15.8256C6.45222 15.8256 4.93922 15.3667 3.65231 14.5068C2.3654 13.6469 1.36237 12.4247 0.770069 10.9948C0.177768 9.56483 0.0227952 7.99136 0.324748 6.47334C0.6267 4.95533 1.37202 3.56094 2.46645 2.46651C3.56088 1.37208 4.95527 0.626761 6.47328 0.324809C7.9913 0.0228562 9.56477 0.177829 10.9947 0.77013C12.4247 1.36243 13.6468 2.36546 14.5067 3.65237C15.3666 4.93929 15.8256 6.45229 15.8256 8.00004C15.8233 10.0748 14.998 12.0639 13.5309 13.531C12.0639 14.9981 10.0747 15.8233 7.99998 15.8256V15.8256ZM7.99998 0.904042C6.59653 0.904042 5.22459 1.32022 4.05765 2.09993C2.89072 2.87965 1.98121 3.9879 1.44413 5.28452C0.907052 6.58115 0.766528 8.00791 1.04033 9.3844C1.31413 10.7609 1.98996 12.0253 2.98235 13.0177C3.97475 14.0101 5.23913 14.6859 6.61562 14.9597C7.99211 15.2335 9.41888 15.093 10.7155 14.5559C12.0121 14.0188 13.1204 13.1093 13.9001 11.9424C14.6798 10.7754 15.096 9.4035 15.096 8.00004C15.0939 6.11872 14.3456 4.31505 13.0153 2.98475C11.685 1.65445 9.88131 0.90616 7.99998 0.904042V0.904042Z"
+                            fill="#323C46" />
+                        <path
+                            d="M7.47598 10.0688V9.75444C7.47598 9.30004 7.54585 8.92671 7.68558 8.63444C7.82531 8.34217 8.08531 8.03257 8.46558 7.70564C8.99358 7.25924 9.32638 6.92351 9.46398 6.69844C9.60767 6.45133 9.67944 6.16898 9.67118 5.88324C9.67118 5.48698 9.54398 5.18138 9.28958 4.96644C9.03518 4.75151 8.66931 4.64271 8.19198 4.64004C7.88977 4.63952 7.58862 4.67579 7.29518 4.74804C6.94803 4.84142 6.61236 4.97317 6.29438 5.14084L5.95038 4.35524C6.65805 3.97702 7.44798 3.77892 8.25038 3.77844C8.99118 3.77844 9.56745 3.96084 9.97918 4.32564C10.3909 4.69044 10.5968 5.20484 10.5968 5.86884C10.6007 6.12379 10.5612 6.37756 10.48 6.61924C10.4015 6.83954 10.2884 7.04588 10.1448 7.23044C9.99971 7.42351 9.68265 7.73337 9.19358 8.16004C8.80158 8.49391 8.54238 8.77151 8.41598 8.99284C8.28958 9.21418 8.22665 9.50911 8.22718 9.87764V10.0696L7.47598 10.0688Z"
+                            fill="#323C46" />
+                        <path
+                            d="M7.90882 11.9784C8.19777 11.9784 8.43202 11.7442 8.43202 11.4552C8.43202 11.1663 8.19777 10.932 7.90882 10.932C7.61986 10.932 7.38562 11.1663 7.38562 11.4552C7.38562 11.7442 7.61986 11.9784 7.90882 11.9784Z"
+                            fill="#323C46" />
+                    </svg>
+                </a>
+
+                <!-- Cart -->
+                <div class="relative flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13l-1.5-6M7 13h10m-6 8a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                    <span class="text-xs text-black ml-1">0</span>
+                </div>
+
+                <!-- Button Chọn ảnh -->
+                <button
+                    class="bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded sm:text-sm text-xs">
+                    Chọn ảnh
+                </button>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Header End -->
+
+    <main>
+
+        
+<!-- HOME -->
+<section class="homepage">
+    <div class="banner">
+        <img class="block" src="images/image.jpg" alt="" />
+    </div>
+    <div class="flex items-center md:justify-center md:gap-4 gap-1 flex-wrap px-4 py-4">
+        <div class="flex items-start md:items-center justify-center gap-1">
+            <div class="w-8 text-right shrink-0">
+                <img class="block ml-auto" src="images/icon/icon1.png" />
+            </div>
+            <p>Sản phẩm in ra <u>đảm bảo</u> chất lượng</p>
+        </div>
+        <div class="flex items-start md:items-center justify-center gap-1">
+            <div class="w-8 text-right shrink-0">
+                <img class="block ml-auto" src="images/icon/icon2.png" />
+            </div>
+            <p>Giao hàng toàn quốc, miễn phí đơn hàng từ 200k</p>
+        </div>
+    </div>
+    <div class="bg-gray-100 flex items-center justify-center gap-4 flex-wrap px-4 py-4">
+        <h2 class="md:text-3xl text-xl font-semibold text-center">Bạn muốn hình dung xem ảnh của bạn trên mọi sản phẩm ?
+        </h2>
+        <!-- Button Chọn ảnh -->
+        <button class="bg-red-400 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded sm:text-base">
+            Chọn ảnh
+        </button>
+    </div>
+    <div class="mx-auto px-4 py-8">
+        <h2 class="text-3xl font-semibold mb-6 text-center">Sản phẩm nổi bật</h2>
+
+        <!-- Swiper -->
+        <div class="swiper slide-product">
+            <div class="swiper-wrapper p-2">
+
+                <!-- Slide 1 -->
+                <div class="swiper-slide bg-white p-4 rounded-lg shadow text-center">
+                    <img src="images/image1.jpg" alt="Mika" class="mx-auto mb-3 rounded-lg">
+                    <p class="text-sm font-medium">Bộ sưu tập chất liệu Mika</p>
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-yellow-400">★★★★★</span>
+                        <p class="text-xs">38 người mua</p>
+                    </div>
+                    <p class="text-sm mt-1 text-gray-700">Chỉ từ: <strong>30.000</strong></p>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide bg-white p-4 rounded-lg shadow text-center">
+                    <img src="images/image1.jpg" alt="Gương cao cấp" class="mx-auto mb-3 rounded-lg">
+                    <p class="text-sm font-medium">Bộ sưu tập chất liệu gương cao cấp</p>
+
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-yellow-400">★★★★★</span>
+                        <p class="text-xs">38 người mua</p>
+                    </div>
+                    <p class="text-sm mt-1 text-gray-700">Chỉ từ: <strong>100.000</strong></p>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide bg-white p-4 rounded-lg shadow text-center">
+                    <img src="images/image1.jpg" alt="Gỗ thông" class="mx-auto mb-3 rounded-lg">
+                    <p class="text-sm font-medium">Bộ sưu tập chất liệu gỗ thông</p>
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-yellow-400">★★★★★</span>
+                        <p class="text-xs">38 người mua</p>
+                    </div>
+                    <p class="text-sm mt-1 text-gray-700">Chỉ từ: <strong>100.000</strong></p>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="swiper-slide bg-white p-4 rounded-lg shadow text-center">
+                    <img src="images/image1.jpg" alt="Khung treo tường" class="mx-auto mb-3 rounded-lg">
+                    <p class="text-sm font-medium">Bộ sưu tập khung treo tường</p>
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-yellow-400">★★★★★</span>
+                        <p class="text-xs">38 người mua</p>
+                    </div>
+                    <p class="text-sm mt-1 text-gray-700">Chỉ từ: <strong>1.050.000</strong></p>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="swiper-slide bg-white p-4 rounded-lg shadow text-center">
+                    <img src="images/image1.jpg" alt="Khung treo tường" class="mx-auto mb-3 rounded-lg">
+                    <p class="text-sm font-medium">Bộ sưu tập khung treo tường</p>
+                    <div class="flex items-center justify-center gap-1">
+                        <span class="text-yellow-400">★★★★★</span>
+                        <p class="text-xs">38 người mua</p>
+                    </div>
+                    <p class="text-sm mt-1 text-gray-700">Chỉ từ: <strong>1.050.000</strong></p>
+                </div>
+
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination mt-3"></div>
+        </div>
+    </div>
+
+    <div class="mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:gap-6 gap-3">
+
+        <!-- Card 1 -->
+        <div class="relative bg-white  overflow-hidden shadow group cursor-pointer">
+            <img src="images/image2.jpg" alt="Combo khung để bàn"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-in-out" />
+
+            <div
+                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 px-4 py-2 rounded shadow text-center">
+                <p class="text-center text-sm font-medium">Bộ sưu tập dành cho gia đình</p>
+                <button class="mt-1 text-xs text-white bg-red-500 px-3 py-1 rounded">Đặt mua</button>
+            </div>
+        </div>
+
+        <!-- Card 2 - Có nhãn giảm giá -->
+        <div class="relative bg-white  overflow-hidden shadow group cursor-pointer">
+            <div
+                class="w-64 absolute top-0 left-0 bg-red-500 text-white px-3 py-2 text-xs font-bold rounded-br-xl z-10">
+                55% OFF <br><span class="text-[10px] font-normal">our amazing legacy products</span>
+            </div>
+            <img src="images/image2.jpg" alt="Giảm giá"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-in-out">
+            <div
+                class="w-64 absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 px-4 py-2 rounded shadow text-center">
+                <p class="text-center text-sm font-medium">Sản phẩm giảm giá</p>
+                <button class="mt-1 text-xs text-white bg-red-500 px-3 py-1 rounded">Đặt mua</button>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="relative bg-white  overflow-hidden shadow group cursor-pointer">
+            <img src="images/image2.jpg" alt="Combo khung để bàn"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-in-out" />
+
+            <div
+                class="w-64 absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 px-4 py-2 rounded shadow text-center">
+                <p class="text-center text-sm font-medium">Bộ sưu tập khung treo tường</p>
+                <button class="mt-1 text-xs text-white bg-red-500 px-3 py-1 rounded">Đặt mua</button>
+            </div>
+        </div>
+        <div class="relative bg-white  overflow-hidden shadow group cursor-pointer">
+            <img src="images/image2.jpg" alt="Combo khung để bàn"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-in-out" />
+
+            <!-- Content -->
+            <div
+                class="w-64 absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 px-4 py-2 rounded shadow text-center">
+                <p class="text-center text-sm font-medium">Bộ sưu tập khung treo tường</p>
+                <button class="mt-1 text-xs text-white bg-red-500 px-3 py-1 rounded">Đặt mua</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="px-4 py-8">
+        <!-- Phần 1: Chất liệu sản phẩm -->
+        <h2 class="text-xl font-semibold text-center mb-6">Chất liệu sản phẩm</h2>
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 md:gap-6 gap-3 text-center">
+            <div class="bg-gray-100 py-4">
+                <img src="images/image3.png" alt="Nhựa" class="mx-auto mb-6 h-48">
+                <h3 class="font-medium">Nhựa</h3>
+                <p class="text-sm text-gray-500">Trẻ em & thú cưng</p>
+            </div>
+            <div class="bg-gray-100 py-4">
+                <img src="images/image3.png" alt="Mika" class="mx-auto mb-6 h-48">
+                <h3 class="font-medium">Mika</h3>
+                <p class="text-sm text-gray-500">Trưng bày</p>
+            </div>
+            <div class="bg-gray-100 py-4">
+                <img src="images/image3.png" alt="Gỗ" class="mx-auto mb-6 h-48">
+                <h3 class="font-medium">Gỗ</h3>
+                <p class="text-sm text-gray-500">Trang trí</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Phần 2: Combo sản phẩm -->
+    <div class="px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="relative overflow-hidden shadow group cursor-pointer">
+                <img src="images/image2.jpg" alt="Combo khung để bàn"
+                    class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-in-out" />
+
+                <!-- Content -->
+                <div
+                    class="absolute bottom-4 left-1/2 transform -translate-x-1/2  py-2 text-center transition duration-300">
+                    <p class="font-medium text-2xl text-white">Combo khung để bàn</p>
+                    <button class="mt-2  bg-red-400 text-white px-4 py-2 rounded">Đặt mua</button>
+                </div>
+            </div>
+            <div class="relative overflow-hidden shadow group cursor-pointer">
+                <img src="images/image2.jpg" alt="Combo khung để bàn"
+                    class="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-in-out" />
+
+                <!-- Content -->
+                <div
+                    class="absolute bottom-4 left-1/2 transform -translate-x-1/2  py-2 text-center transition duration-300">
+                    <p class="font-medium text-2xl text-white">Combo khung để bàn</p>
+                    <button class="mt-2  bg-red-400 text-white px-4 py-2 rounded">Đặt mua</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="px-4 py-8">
+        <div class="swiper slide-review">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="flex-1 text-center">
+                                <p class="text-red-500 text-xl font-bold mb-2">★★★★★</p>
+                                <p class="text-gray-700 italic text-lg">“Mình rất hài lòng với chất lượng ảnh in và đóng
+                                    gói
+                                    kỹ càng. Rất đáng tiền!”</p>
+                                <p class="mt-2 text-sm text-gray-500">– khách hàng thân thiết</p>
+                            </div>
+                            <div class="flex-1">
+                                <img src="images/image2.jpg" alt="Ảnh sản phẩm" class="shadow w-full max-w-md mx-auto">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="flex-1 text-center">
+                                <p class="text-red-500 text-xl font-bold mb-2">★★★★★</p>
+                                <p class="text-gray-700 italic text-lg">“Mình rất hài lòng với chất lượng ảnh in và đóng
+                                    gói
+                                    kỹ càng. Rất đáng tiền!”</p>
+                                <p class="mt-2 text-sm text-gray-500">– khách hàng thân thiết</p>
+                            </div>
+                            <div class="flex-1">
+                                <img src="images/image2.jpg" alt="Ảnh sản phẩm" class="shadow w-full max-w-md mx-auto">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination mt-3"></div>
+        </div>
+    </div>
+
+    <!-- Phần 5: CTA -->
+    <div class="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+        <!-- Background Image -->
+        <img src="images/image4.jpg" alt="Bộ sưu tập gia đình" class="absolute inset-0 w-full h-full object-cover" />
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/10 md:hidden"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 h-full flex items-center justify-start px-4 md:px-16">
+            <div class="max-w-lg space-y-4 text-center md:text-left">
+                <p class="text-lg md:text-xl font-medium md:text-gray-800 text-white">
+                    Cuộc sống có sự xuất hiện những bức ảnh gia đình, bạn bè, người thân sẽ là động lực tuyệt vời cho
+                    bạn.
+                </p>
+                <button class="bg-red-400 hover:bg-red-500 text-white px-5 py-2 rounded text-sm transition">
+                    Xem bộ sưu tập
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-8 px-4 text-center">
+        <h2 class="text-xl md:text-2xl font-semibold mb-2">Lưu giữ mọi khoảnh khắc của bạn</h2>
+        <p class="text-sm text-gray-600 mb-10">Với 3 bước đơn giản</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center space-y-3">
+                <div
+                    class="w-10 h-10 border border-black rounded-full flex items-center justify-center text-sm font-medium">
+                    1
+                </div>
+                <button class="bg-red-500 text-white px-4 py-1 rounded text-sm hover:bg-red-600 transition">
+                    Chọn ảnh
+                </button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center space-y-3">
+                <div
+                    class="w-10 h-10 border border-black rounded-full flex items-center justify-center text-sm font-medium">
+                    2
+                </div>
+                <p class="text-sm max-w-[150px] text-gray-700">
+                    Xem ảnh trước trên sản phẩm của chúng tôi
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center space-y-3">
+                <div
+                    class="w-10 h-10 border border-black rounded-full flex items-center justify-center text-sm font-medium">
+                    3
+                </div>
+                <p class="text-sm max-w-[150px] text-gray-700">
+                    Thêm vào giỏ và thanh toán
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--  Đăng Ký -->
+    <div class="bg-gray-200  px-4 py-2">
+        <div class="max-w-7xl mx-auto relative flex flex-col md:flex-row items-center justify-between  gap-4">
+            <div class="relative ">
+                <img src="images/icon/mail.png" alt="mail icon" class="md:absolute bottom-2 -mt-8">
+                <p class="text-sm md:text-base md:mt-0 mt-4 font-medium md:pl-40">
+                    Đăng ký nhận bản tin từ dichvuanhso<br class="hidden md:block">
+                    Đừng bỏ lỡ những voucher và chương trình siêu hấp dẫn
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form class="flex items-center gap-2 w-full md:w-auto">
+                <input type="email" placeholder="Địa chỉ email của bạn"
+                    class="w-full md:w-64 bg-white px-3 py-2 border rounded text-sm" required>
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 text-sm rounded">
+                    Đăng ký
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bộ sưu tập theo phong cách -->
+    <div class="bg-gray-100 px-4 py-8 text-center">
+        <h2 class="text-lg md:text-xl font-semibold mb-6">Bộ sưu tập theo từng phong cách</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-sm text-gray-800">
+            <a href="#" class="hover:underline">Kệ & Bàn &gt;</a>
+            <a href="#" class="hover:underline">Tường &gt;</a>
+            <a href="#" class="hover:underline">Hiện đại &gt;</a>
+            <a href="#" class="hover:underline">Cổ điển &gt;</a>
+            <a href="#" class="hover:underline">Quà tặng &gt;</a>
+            <a href="#" class="hover:underline">Tất cả &gt;</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- END HOME -->
+
+    </main>
+
+    <!-- Footer Start-->
+    <footer class="bg-gray-800 text-white text-sm">
+        <!-- Top Section -->
+        <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Hỗ trợ khách hàng -->
+            <div>
+                <h4 class="font-semibold mb-2 text-white">HỖ TRỢ KHÁCH HÀNG</h4>
+                <p>Hotline chăm sóc khách hàng: <span class="text-red-400 font-semibold">0942.066.299</span></p>
+                <p>(8h-21h từ T2 đến CN)</p>
+                <ul class="space-y-1 mt-2">
+                    <li>Các câu hỏi thường gặp</li>
+                    <li>Hướng dẫn đặt hàng</li>
+                    <li>Phương thức vận chuyển</li>
+                    <li>Hỗ trợ khách hàng: myphoto@gmail.com</li>
+                </ul>
+            </div>
+
+            <!-- Về Dịch Vụ Ảnh Số -->
+            <div>
+                <h4 class="font-semibold mb-2 text-white">VỀ DICHVUANHSO</h4>
+                <ul class="space-y-1">
+                    <li>Giới thiệu dichvuanhso</li>
+                    <li>Chính sách bảo mật thanh toán</li>
+                    <li>Tuyển dụng cộng tác viên</li>
+                    <li>Gửi ảnh của bạn</li>
+                    <li>Chính sách bảo mật thông tin cá nhân</li>
+                </ul>
+            </div>
+
+            <!-- Thanh toán -->
+            <div>
+                <h4 class="font-semibold mb-2 text-white">PHƯƠNG THỨC THANH TOÁN</h4>
+                <div class="flex items-center gap-3 my-2">
+                    <img src="images/icon/visa.png" alt="Visa" class="h-8">
+                    <img src="images/icon/mastercard.png" alt="Mastercard" class="h-8">
+                </div>
+                <img src="images/icon/dangky.png" alt="Đã đăng ký" class="h-10">
+
+            </div>
+
+            <!-- Mạng xã hội + App -->
+            <div>
+                <h4 class="font-semibold mb-2 text-white">KẾT NỐI VỚI CHÚNG TÔI</h4>
+                <div class="flex gap-4 mb-4">
+                    <a href="#">
+                        <svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.4426 0H8.58859C5.39099 0 3.31652 2.12733 3.31652 5.41742V7.9015H0.462462C0.211411 7.9015 0 8.11291 0 8.36396V11.9712C0 12.2222 0.211411 12.4336 0.462462 12.4336H3.31652V21.5375C3.31652 21.7886 3.52793 22 3.77898 22H7.51832C7.76937 22 7.98078 21.7886 7.98078 21.5375V12.394H11.3369C11.588 12.394 11.7994 12.1826 11.7994 11.9315V8.33754C11.7994 8.21862 11.7598 8.11291 11.6673 8.02042C11.5748 7.92793 11.4559 7.88829 11.3502 7.88829H7.96757V5.77417C7.96757 4.76997 8.21862 4.24144 9.51351 4.24144H11.4294C11.6805 4.24144 11.8919 4.03003 11.8919 3.77898V0.462462C11.8787 0.211411 11.6937 0 11.4426 0Z"
+                                fill="white" />
+                        </svg>
+
+                    </a>
+                    <a href="#">
+                        <svg width="31" height="21" viewBox="0 0 31 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M28.7598 1.97477C27.952 0.52062 27.0543 0.269287 25.2591 0.161572C23.4638 0.0359048 18.9398 0 15.0262 0C11.0946 0 6.5706 0.0538573 4.77535 0.161572C2.98011 0.251334 2.10044 0.52062 1.27462 1.97477C0.430859 3.42892 0 5.92431 0 10.3047C0 14.6671 0.430859 17.1805 1.27462 18.6167C2.10044 20.0708 2.98011 20.3222 4.77535 20.4478C6.5706 20.5555 11.0946 20.6094 15.0262 20.6094C18.9398 20.6094 23.4638 20.5376 25.277 20.4478C27.0723 20.3222 27.9699 20.0529 28.7778 18.6167C29.6215 17.1805 30.0524 14.6671 30.0524 10.3047C30.0524 10.3047 30.0524 10.3047 30.0524 10.2867C30.0344 5.90635 29.6215 3.41096 28.7598 1.97477ZM11.2741 15.9418V4.66763L20.6633 10.3047L11.2741 15.9418Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+
+                </div>
+                <p class="mb-2">TẢI ỨNG DỤNG TRÊN ĐIỆN THOẠI</p>
+                <div class="flex gap-2">
+                    <img src="images/icon/appstore.png" alt="App Store" class="h-8">
+                    <img src="images/icon/googleplay.png" alt="Google Play" class="h-8">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="border-t border-gray-700 text-gray-400 text-xs  py-4 text-center space-y-2">
+        <div class="max-w-7xl gap-4 mx-auto flex flex-wrap justify-between items-center px-4">
+            <div class="md:text-left">
+            <p>&copy; 2020. Bản quyền thuộc về<span class="text-white"> DichVuAnhSo - dichvuanhso.vn</span></p>
+            <p>Giấy chứng nhận đăng ký kinh doanh số 0109321959 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày
+                07/03/2020</p>
+            </div>
+            <p>Địa chỉ: Số 3 Trần Phú - Ao sen - Hà Đông - Hà Nội | Hotline: 0942.066.299</p>
+        </div>
+    </div>
+    </footer>
+
+    <!-- Footer End-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/lightgallery.min.js"></script>
+    <!-- video lightgallery-->
+    <script src="js/video.min.js"></script>
+    <script src="js/lightgallery.umd.js"></script>
+    <script src="js/lg-video.umd.js"></script>
+    <!-- end video lightgallery-->
+    <script src="js/lg-thumbnail.min.js"></script>
+    <script src="js/common.js"></script>
+    <!-- Script nhỏ để mở/đóng mobile menu -->
+
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const menuItems = document.getElementById('menu-items');
+
+        toggleBtn.addEventListener('click', () => {
+            menuItems.classList.toggle('hidden');
+            menuItems.classList.toggle('flex');
+        });
+    </script>
+
+</body>
+
+</html>

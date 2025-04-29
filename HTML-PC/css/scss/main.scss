@@ -1,0 +1,34 @@
+
+// // Base
+// @import 'base/reset';
+// @import 'base/typography';
+// @import 'base/base';
+
+// // Layout
+// @import 'layout/header';
+// @import 'layout/footer';
+// @import 'layout/sidebar';
+// @import 'layout/grid';
+
+// // Pages
+// @import 'pages/home';
+
+$color-base: #EE6F6F;
+.text-base{
+    color: $color-base;
+}
+.swiper-button-next, .swiper-button-prev{
+    width: 30px;
+    height: 30px;
+    color: $color-base;
+    @media (max-width:767px) {
+        display: none;
+    }
+}
+.swiper-pagination{
+    position: relative;
+
+}
+.swiper-pagination-bullet-active{
+    background: $color-base;
+}
